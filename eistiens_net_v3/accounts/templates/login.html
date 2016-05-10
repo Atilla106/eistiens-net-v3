@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block header_text %}Se connecter{% endblock %}
+{% block content-block %}
+    {% if form.errors %}
+    <p>Erreur lors de la connexion</p>
+    {% endif %}
+    {% if next %}
+    <p> Vous avez besoin d'être connecté pour voir cette page </p>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}<br/>
+        {{ form.password.label_tag }}
+        {{ form.password }}<br/>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+{% endblock %}
