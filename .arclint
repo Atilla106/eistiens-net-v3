@@ -1,0 +1,10 @@
+{
+    "linters": {
+        "python-flake8": {
+            "type": "flake8",
+            "include": "(\\.py$)",
+            "exclude": "(^venv/)",
+            "exclude": "(migrations/)"
+        }
+    }
+}

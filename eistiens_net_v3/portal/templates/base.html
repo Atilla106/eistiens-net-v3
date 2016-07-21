@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>eistiens.net</title>
+    </head>
+    <body>
+        <nav class="navbar">{{ request.user.username }}</nav>
+        <h1>{% block header_text %}{% endblock %}</h1>
+        {% if messages %}
+        {% for message in messages %}
+            {{ message }}<br/>
+        {% endfor %}
+        {% endif %}
+        {% block content-block %}{% endblock %}
+    </body>
+</html>
