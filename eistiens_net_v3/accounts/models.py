@@ -8,7 +8,11 @@ class Account(models.Model):
     The Account where all additional info about the user is stored
     From an user object, you can access the related account with 'user.account'
     """
-    user = models.OneToOneField(User, verbose_name='default_user')
+    user = models.OneToOneField(
+        User,
+        verbose_name='default_user',
+        on_delete=models.CASCADE
+    )
 
 
 def create_user_profile(sender, instance, created, **kwargs):

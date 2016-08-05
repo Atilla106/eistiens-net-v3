@@ -58,7 +58,7 @@ class AuthenticateTest(CustomUnitTestCase):
         }
         other_user = User.objects.create_user(username='other', password='pw')
         user = self.backend.authenticate(username='other', password='pw')
-        self.assertEquals(user, other_user)
+        self.assertEqual(user, other_user)
 
     def test_creates_new_user_if_necessary(self, mock_post):
         mock_post.return_value.status_code = 200
@@ -73,7 +73,7 @@ class AuthenticateTest(CustomUnitTestCase):
         }
         found_user = self.backend.authenticate(username='god', password='meh')
         new_user = User.objects.get(username='god')
-        self.assertEquals(new_user, found_user)
+        self.assertEqual(new_user, found_user)
 
     def test_returns_none_when_server_not_reachable(self, mock_post):
         mock_post.side_effect = ConnectionError

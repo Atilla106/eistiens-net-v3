@@ -18,7 +18,7 @@ def login(request):
         default=request.GET.get('next', default=settings.LOGIN_REDIRECT_URL)
     )
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return redirect(redirect_to)
     elif request.method == "POST":
         form = CustomAuthenticationForm(request, data=request.POST)
