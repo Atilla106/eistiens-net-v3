@@ -1,4 +1,4 @@
 {
-    "phabricator.uri" : "http://phabricator.atilla.org",
+    "phabricator.uri" : "https://phabricator.atilla.org",
     "arc.land.onto.default" : "dev"
 }
