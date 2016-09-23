@@ -1,0 +1,21 @@
+<header>
+    <div class="side-nav fixed blue darken-1 white-text">
+        <a href="/" class="blue darken-3 white-text center" style="padding: 3em 0;">
+            Eistiens.net
+        </a>
+        <span>
+            {% if request.user.is_authenticated %}
+                <p id='username'>{{request.user.username}}</p>
+                <a id='id_logout' class='btn grey lighten-3' href='{% url 'logout' %}'>Déconnexion</a>
+            {% else %}
+                <a id='id_login' class='btn grey lighten-3' href='{% url 'login' %}'>Connexion</a>
+            {% endif %}
+        </span>
+        <ul>
+            <li><a class="flow-text" href="">Lorem</a></li>
+            <li><a class="flow-text" href="">Ipsum</a></li>
+            <li><a class="flow-text" href="">Dolor</a></li>
+            <li><a class="flow-text" href="">Sit Amet</a></li>
+        </ul>
+    </div>
+</header>

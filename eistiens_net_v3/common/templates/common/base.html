@@ -1,0 +1,38 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Le réseau social étudiant de l'EISTI">
+        <meta name="keywords" content="EISTI, Social, Réseau">
+
+       <title>{% block title %}{% endblock title %} | Eistiens.net</title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/normalize.css" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/styles.css" %}"/>
+    </head>
+
+    <body class="grey lighten-3">
+
+        {% include 'common/navbar.html' %}
+
+        {% if request.user.is_authenticated %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}<br/>
+                    {# TODO: Make better message apparition #}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+        <main>
+            <div class="container">
+                {% block content %}{% endblock content %}
+            </div>
+        </main>
+    </body>
+</html>

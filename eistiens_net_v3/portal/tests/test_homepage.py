@@ -9,14 +9,15 @@ User = get_user_model()
 class HomePageTest(CustomUnitTestCase):
     def test_home_page_renders_home_template(self):
         response = self.client.get('/')
-        self.assertTemplateUsed(response, 'home.html')
+        self.assertTemplateUsed(response, 'portal/home.html')
 
     def test_home_page_displays_logout_link_when_logged_in(self):
         self.client.login(username='test', password='test')
         response = self.client.get('/')
         self.assertContains(
             response,
-            "<a id='id_logout' href='%s'>Se déconnecter" % reverse('logout'),
+            "<a id='id_logout' class='btn grey lighten-3' href='%s'>" +
+            "Déconnexion" % reverse('logout'),
             html=True
         )
 
@@ -33,6 +34,6 @@ class HomePageTest(CustomUnitTestCase):
         response = self.client.get('/')
         self.assertContains(
             response,
-            "<nav class='navbar'>%s" % self.user.username,
+            "<p id='username'>%s" % self.user.username,
             html=True
         )
