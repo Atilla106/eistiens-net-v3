@@ -11,13 +11,13 @@ class CustomAuthenticationForm(AuthenticationForm):
         max_length=254,
         widget=forms.TextInput(attrs={
             'autofocus': '',
-            'placeholder': 'Login LDAP'
+            'placeholder': 'Login LDAP/Arel'
         })
     )
     password = forms.CharField(
         label="Mot de passe",
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'placeholder': 'Mot de passe LDAP'
+            'placeholder': 'Mot de passe LDAP/Arel'
         })
     )

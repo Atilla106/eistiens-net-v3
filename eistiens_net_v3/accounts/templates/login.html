@@ -1,19 +1,75 @@
-{% extends "common/base.html" %}
-{% block title %}Se connecter{% endblock %}
-{% block content %}
-    {% if form.errors %}
-    <p>Erreur lors de la connexion</p>
-    {% endif %}
-    {% if next != '/' %}
-    <p> Vous avez besoin d'être connecté pour voir cette page </p>
-    {% endif %}
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        {{ form.username.label_tag }}
-        {{ form.username }}<br/>
-        {{ form.password.label_tag }}
-        {{ form.password }}<br/>
-        <input type="submit" value="login"/>
-        <input type="hidden" name="next" value="{{ next }}"/>
-    </form>
-{% endblock %}
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Le réseau social étudiant de l'EISTI">
+        <meta name="keywords" content="EISTI, Social, Réseau">
+
+       <title>Se connecter | Eistiens.net</title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/normalize.css" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/login.css" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "css/font-awesome.min.css" %}"/>
+        
+    </head>
+
+    <body class="blue-grey darken-2 flex-center">
+
+        {% if request.user.is_authenticated %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}<br/>
+                    {# TODO: Make better message apparition #}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+        <main class="flexbox-columns z-depth-2">
+            <div id="login-img"></div>
+
+            <div id="panel" class="grey lighten-4">
+                <a class="text-muted grey-text darken-2" href="/">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <b>Accueil</b>
+                </a>
+                <h1 class="grey-text text-darken-3">Connectez vous</h1>
+                <p class="grey-text text-darken-1">Afin de pouvoir accéder à toutes les fonctionnalités mise à disposition via la plateforme, il vous est nécessaire de vous connecter. Mais rassurez-vous, votre compte vous attend déja !</p>
+
+                {% if form.errors %}
+                    <p>Erreur lors de la connexion</p>
+                {% endif %}
+                
+                {% if next != '/' %}
+                    <p> Vous avez besoin d'être connecté pour voir cette page </p>
+                {% endif %}
+
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="row">
+                            <div class="col m4 ">
+                                <label class="right" id="{{ field.id_for_label }}">
+                                    <h5>{{ field.label }}</h5>
+                                </label>
+                            </div>
+                            <div class="col m8">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <input type="submit" class="btn btn-large blue darken-2 right" value="login"/>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>
+
+{# TODO: Center labels #}

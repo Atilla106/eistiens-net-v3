@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Cabin';
+    src: url('../fonts/Cabin-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('../fonts/Cabin-SemiBold.ttf')  format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('../fonts/Cabin-SemiBoldItalic.ttf')  format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cabin';
+    src: url('../fonts/Cabin-Italic.ttf')  format('truetype');
+    font-style: italic;
+}
+
+html, body{
+	width: 100%;
+	height: 100%;
+	font-family: 'Cabin', sans;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Roboto', sans;
+	font-weight: lighter;
+}
+
+
+
+.flex-center{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    width: 60%;
+    max-height: 60%;
+}
+
+.flexbox-columns {
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.flexbox-columns > #panel {
+	width: 70%;
+}
+
+.flexbox-columns > #login-img {
+	width: 30%;
+}
+
+#login-img{
+	background-image: url("/static/img/login.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#panel{
+	padding: 5em;
+}

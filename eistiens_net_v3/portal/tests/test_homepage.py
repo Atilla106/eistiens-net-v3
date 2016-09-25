@@ -16,9 +16,7 @@ class HomePageTest(CustomUnitTestCase):
         response = self.client.get('/')
         self.assertContains(
             response,
-            "<a id='id_logout' class='btn grey lighten-3' href='%s'>" +
-            "Déconnexion" % reverse('logout'),
-            html=True
+            "href='%s'>Déconnexion" % reverse('logout')
         )
 
     def test_home_page_displays_login_link_when_not_logged_in(self):
