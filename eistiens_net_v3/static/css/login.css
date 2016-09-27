@@ -33,8 +33,6 @@ h1, h2, h3, h4, h5, h6{
 	font-weight: lighter;
 }
 
-
-
 .flex-center{
 	display: flex;
     align-items: center;
@@ -43,7 +41,7 @@ h1, h2, h3, h4, h5, h6{
 
 main{
     width: 60%;
-    max-height: 60%;
+    height: 60%;
 }
 
 .flexbox-columns {
@@ -54,6 +52,7 @@ main{
 
 .flexbox-columns > #panel {
 	width: 70%;
+	padding: 5em;
 }
 
 .flexbox-columns > #login-img {
@@ -67,6 +66,55 @@ main{
 	background-size: cover;
 }
 
-#panel{
-	padding: 5em;
+@media screen and (max-width: 1393px) {
+	main{
+	    width: 80%;
+	}
+}
+
+@media screen and (max-width: 1393px) and (orientation:portrait) {
+	main{
+		height: 70%;
+	}
+}
+
+@media screen and (max-width: 1393px) and (orientation:landscape) {
+ 	main{
+		height: 90%;
+	}
+}
+
+@media screen and (max-width: 756px) {
+	.flex-center{
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	main{
+	    width: 100%;
+		height: 100%;
+	}
+
+	.flexbox-columns {
+		display: block;
+	}
+
+	.flexbox-columns > #login-img {
+		display: none
+	}
+
+	.flexbox-columns > #panel {
+		margin: 0 !important;
+		padding: 2em;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+/* Ugly hack  to solve layout break when Android's soft keyboard is visible */
+@media screen and (max-aspect-ratio: 13/9) {
+	.flex-center{
+		height: 143vh;
+	}
 }
