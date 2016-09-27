@@ -1,5 +1,6 @@
 from django.db import models
 
+from accounts.models import Account
 from common.models import SchoolYear
 
 
@@ -20,7 +21,6 @@ class Association(models.Model):
     description = models.TextField(
         "Description de l'association",
         default="",
-        null=True,
         blank=True,
     )
 
@@ -53,9 +53,53 @@ class Association(models.Model):
     room = models.CharField(
         "Local de l'association",
         max_length=5,
-        null=True,
+        default="",
         blank=True,
     )
+
+    members = models.ManyToManyField(
+        Account,
+        through='Membership',
+        through_fields=('association', 'account')
+    )
+
+
+class Membership(models.Model):
+    """
+    Model to represent a membership entry. It is linked to a year, meaning we
+    can keep data on members from previous years.
+    A member can be member of executive board, with a role, either defined
+    on the DEFAULT_ROLES entry, or something else (OT), in which case the
+    custom_role is filed.
+    Any member cas also setup a custom role, which does not imply he's member
+    of the executive board.
+    By default, a member is not flagged as accepted, and it's up the the
+    executive board's members to accept him.
+    """
+    DEFAULT_ROLES = (
+        ('PR', 'Président'),
+        ('VP', 'Vice-Président'),
+        ('TR', 'Trésorier'),
+        ('RC', 'Responsable communications'),
+        ('SC', 'Secrétaire'),
+        ('OT', 'Autre'),
+    )
+
+    date_subscription = models.DateField(auto_now_add=True)
+
+    is_board = models.BooleanField(default=False)
+
+    role = models.CharField(max_length=2, choices=DEFAULT_ROLES)
+
+    custom_role = models.CharField(max_length=30, default="", blank=True)
+
+    accepted = models.BooleanField(default=False)
+
+    year = models.ForeignKey(SchoolYear, on_delete=models.CASCADE)
+
+    association = models.ForeignKey(Association, on_delete=models.CASCADE)
+
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 
 class SocialLink(models.Model):
@@ -82,7 +126,7 @@ class Refusal(models.Model):
     """
     Text = models.TextField(
         "Commentaires sur le refus",
-        null=True,
+        default="",
         blank=True,
     )
 
