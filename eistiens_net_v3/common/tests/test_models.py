@@ -1,5 +1,4 @@
-from portal.tests.base import CustomUnitTestCase
-
+from common.tests.base import CustomUnitTestCase
 from common.models import SchoolYear
 
 

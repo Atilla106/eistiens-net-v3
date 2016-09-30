@@ -1,4 +1,4 @@
-from portal.tests.base import CustomUnitTestCase
+from common.tests.base import CustomUnitTestCase
 from django.contrib.auth import get_user_model
 
 from accounts.models import Account

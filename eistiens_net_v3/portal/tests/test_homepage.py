@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
-from .base import CustomUnitTestCase
+from common.tests.base import CustomUnitTestCase
 
 User = get_user_model()
 

@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 
 from accounts.authentication import AuthEistiensNetBackend
-from portal.tests.base import CustomUnitTestCase
+from common.tests.base import CustomUnitTestCase
 
 from unittest.mock import patch
 

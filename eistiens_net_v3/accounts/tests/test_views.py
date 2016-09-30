@@ -3,7 +3,7 @@ from django.contrib.auth import SESSION_KEY
 from django.http import HttpResponse
 
 from accounts.views import CustomAuthenticationForm
-from portal.tests.base import CustomUnitTestCase
+from common.tests.base import CustomUnitTestCase
 
 from unittest.mock import patch
 
