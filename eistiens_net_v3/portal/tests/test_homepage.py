@@ -23,8 +23,7 @@ class HomePageTest(CustomUnitTestCase):
         response = self.client.get('/')
         self.assertContains(
             response,
-            "<a id='id_login' href='%s'>Se connecter" % reverse('login'),
-            html=True
+            "href='%s'>Se connecter" % reverse('login')
         )
 
     def test_home_page_displays_username_when_logged_in(self):
@@ -32,6 +31,5 @@ class HomePageTest(CustomUnitTestCase):
         response = self.client.get('/')
         self.assertContains(
             response,
-            "<p id='username'>%s" % self.user.username,
-            html=True
+            "id='username'>%s" % self.user.username
         )

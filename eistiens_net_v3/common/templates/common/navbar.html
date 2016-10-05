@@ -1,21 +1,25 @@
+{% load static from staticfiles %}
+
 <header>
-    <div class="side-nav fixed blue darken-1 white-text">
-        <a href="/" class="blue darken-3 white-text center" style="padding: 3em 0;">
+    <div class="side-nav fixed blue-grey darken-2 white-text">
+	<ul>
+            {% if request.user.is_authenticated %}
+		<li><img src="{% static "img/testImg.png" %}" alt="" class="circle" style="height:10em;padding-left:6.5em;"/></li>
+		<li style='text-align:center;' id='username'>{{request.user.username}}</li>
+                <li><a id="id_logout" class="center-align" style="padding-left:0;margin-bottom:1em;" href='{% url 'logout' %}'>Déconnexion</a></li>
+            {% else %}
+                <li><a id="id_login" class="center-align"  style="padding-left:0;margin-bottom:1em;" href='{% url 'login' %}'>Connexion</a></li>
+            {% endif %}
+
+                <li><a class="flow-text" href="">Lorem</a></li>
+                <li><a class="flow-text" href="">Ipsum</a></li>
+                <li><a class="flow-text" href="">Dolor</a></li>
+                <li><a class="flow-text" href="">Sit Amet</a></li>
+        </ul>
+
+        <a href="/" class="blue darken-1 white-text center" style="position:absolute; bottom:0; min-width:100%;min-height:5em; line-height:5em;">
             Eistiens.net
         </a>
-        <span>
-            {% if request.user.is_authenticated %}
-                <p id='username'>{{request.user.username}}</p>
-                <a id='id_logout' class='btn grey lighten-3' href='{% url 'logout' %}'>Déconnexion</a>
-            {% else %}
-                <a id='id_login' class='btn grey lighten-3' href='{% url 'login' %}'>Connexion</a>
-            {% endif %}
-        </span>
-        <ul>
-            <li><a class="flow-text" href="">Lorem</a></li>
-            <li><a class="flow-text" href="">Ipsum</a></li>
-            <li><a class="flow-text" href="">Dolor</a></li>
-            <li><a class="flow-text" href="">Sit Amet</a></li>
-        </ul>
+
     </div>
 </header>

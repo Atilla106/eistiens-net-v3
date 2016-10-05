@@ -1,11 +1,37 @@
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 header, main, footer {
     padding-left: 300px;
+}
+
+.side-nav.blue-grey li a {
+    color: rgb(180,180,180);
+    padding-left:3em;
+}
+
+.side-nav li a:hover:not(#id_login):not(#id_logout) {
+    background-color: #546e7a ;
+    color: white;
+    padding-left: calc( 3em - 5px );
+    border-left: solid 5px rgb(23, 119, 203);
+}
+
+.side-nav li a:focus:not(#id_login):not(#id_logout) {
+    border-left: solid 5px #1E88E5;
+    color: white;
+    padding-left: calc( 3em - 5px );
+    background-color: #526c77;
+}
+
+.side-nav li a:active:not(#id_login):not(#id_logout) {
+    color: white;
+    border-left: solid 5px #1E88E5;
+    padding-left: calc( 3em - 5px );
+    background-color: #526c77;
 }
 
 @media only screen and (max-width : 992px) {
