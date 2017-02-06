@@ -63,6 +63,9 @@ class Association(models.Model):
         through_fields=('association', 'account')
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Membership(models.Model):
     """
@@ -101,6 +104,9 @@ class Membership(models.Model):
 
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.account.__str__() + ' - ' + self.association.__str__()
+
 
 class SocialLink(models.Model):
     PRESETS = (
@@ -118,24 +124,30 @@ class SocialLink(models.Model):
 
     url = models.URLField()
 
+    def __str__(self):
+        return '[' + self.association.__str__() + '] ' + self.url
+
 
 class Refusal(models.Model):
     """
     Object representing a comment from EISTI's administration to explain
     why an association was refused.
     """
-    Text = models.TextField(
+    text = models.TextField(
         "Commentaires sur le refus",
         default="",
         blank=True,
     )
 
-    Association = models.ForeignKey(Association, on_delete=models.CASCADE)
+    association = models.ForeignKey(Association, on_delete=models.CASCADE)
 
-    Date_of_comment = models.DateTimeField(
+    comment_date = models.DateTimeField(
         "Date du commentaire",
         auto_now=True,
     )
+
+    def __str__(self):
+        return self.association.__str__()
 
 
 class Document(models.Model):
@@ -162,3 +174,6 @@ class Document(models.Model):
     association = models.ForeignKey(Association, on_delete=models.CASCADE)
 
     year = models.ForeignKey(SchoolYear, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '[' + self.year.__str__() + '] ' + self.association.__str__()

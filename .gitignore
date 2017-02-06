@@ -5,3 +5,4 @@ build
 *.swp
 db.sqlite3
 ldap_login.json
+media/

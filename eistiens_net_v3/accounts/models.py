@@ -14,9 +14,13 @@ class Account(models.Model):
         on_delete=models.CASCADE
     )
 
+    def __str__(self):
+        return self.user.__str__()
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Account.objects.create(user=instance)
+
 
 post_save.connect(create_user_profile, sender=User)
