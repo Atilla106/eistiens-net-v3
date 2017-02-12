@@ -9,7 +9,7 @@
 
 		<ul class="collection">
 		{% for asso in account.association_set.all %}
-			<li class="collection-item">{{ asso }}</li>
+			<li class="collection-item"><a href='{% url 'associations:details' id=asso.pk %}'>{{ asso }}</a></li>
 		{% endfor %}
 		</ul>
 	{% endif %}
@@ -17,7 +17,7 @@
 	<h3>Toutes les associations</h3>
 	<ul class="collection">
 	{% for asso in assos %}
-		<li class="collection-item">{{ asso }}</li>
+		<li class="collection-item"><a href='{% url 'associations:details' id=asso.pk %}'>{{ asso }}</a></li>
 	{% endfor %}
 	</ul>
 
