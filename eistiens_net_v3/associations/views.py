@@ -1,6 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
+from django.contrib import messages
+from django.shortcuts import (
+    get_object_or_404,
+    HttpResponseRedirect,
+    render)
 
 from .models import Association
+from .forms import AssociationForm
 from accounts.models import Account
 
 
@@ -21,3 +27,23 @@ def list(request):
 def details(request, id):
     asso = get_object_or_404(Association, pk=id)
     return render(request, 'associations/details.html', {'asso': asso})
+
+
+def edit(request, id):
+    asso = get_object_or_404(Association, pk=id)
+
+    if request.method == 'POST':
+        form = AssociationForm(request.POST, instance=asso)
+        if form.is_valid():
+            form.save()
+            url = reverse('associations:details', kwargs={'id': id})
+            return HttpResponseRedirect(url)
+        else:
+            messages.error(request, 'Il y a des erreur dans le formulaire')
+
+    form = AssociationForm(instance=asso)
+
+    return render(
+        request,
+        'associations/edit.html',
+        {'form': form, 'name': asso.name, 'pk': id})
