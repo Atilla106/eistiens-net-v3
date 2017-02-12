@@ -5,6 +5,6 @@ from accounts import views
 
 
 urlpatterns = [
-    url(r'^login$',     views.login, name='login'),
-    url(r'^logout$',    logout,         {'next_page': '/'}, name='logout'),
+    url(r'^login$',  views.login,                     name='login'),
+    url(r'^logout$', logout,      {'next_page': '/'}, name='logout'),
 ]

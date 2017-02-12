@@ -6,12 +6,12 @@
             {% if request.user.is_authenticated %}
 		<li><img src="{% static "img/testImg.png" %}" alt="" class="circle" style="height:10em;padding-left:6.5em;"/></li>
 		<li style='text-align:center;' id='username'>{{request.user.username}}</li>
-                <li><a id="id_logout" class="center-align" style="padding-left:0;margin-bottom:1em;" href='{% url 'logout' %}'>Déconnexion</a></li>
+                <li><a id="id_logout" class="center-align" style="padding-left:0;margin-bottom:1em;" href="{% url 'accounts:logout' %}">Déconnexion</a></li>
             {% else %}
-                <li><a id="id_login" class="center-align"  style="padding-left:0;margin-bottom:1em;" href='{% url 'login' %}'>Connexion</a></li>
+                <li><a id="id_login" class="center-align"  style="padding-left:0;margin-bottom:1em;" href="{% url 'accounts:login' %}">Connexion</a></li>
             {% endif %}
 
-                <li><a class="flow-text" href="">Lorem</a></li>
+                <li><a class="flow-text" href="{% url 'associations:list' %}">Associations</a></li>
                 <li><a class="flow-text" href="">Ipsum</a></li>
                 <li><a class="flow-text" href="">Dolor</a></li>
                 <li><a class="flow-text" href="">Sit Amet</a></li>

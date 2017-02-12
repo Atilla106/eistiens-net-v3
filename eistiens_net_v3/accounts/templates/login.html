@@ -48,7 +48,7 @@
                     <p> Vous avez besoin d'être connecté pour voir cette page </p>
                 {% endif %}
 
-                <form action="{% url 'login' %}" method="post">
+                <form action="{% url 'accounts:login' %}" method="post">
                     {% csrf_token %}
 
                     {% for field in form %}

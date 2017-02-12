@@ -1,0 +1,24 @@
+{% extends 'common/base.html' %}
+
+{% block title %}Associations {{ super }}{% endblock %}
+
+{% block content %}
+
+	{% if account %}
+		<h3>Associations souscrites</h3>
+
+		<ul class="collection">
+		{% for asso in account.association_set.all %}
+			<li class="collection-item">{{ asso }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+	<h3>Toutes les associations</h3>
+	<ul class="collection">
+	{% for asso in assos %}
+		<li class="collection-item">{{ asso }}</li>
+	{% endfor %}
+	</ul>
+
+{% endblock %}

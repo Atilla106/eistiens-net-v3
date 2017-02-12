@@ -23,7 +23,10 @@ from portal import views as portal_views
 urlpatterns = [
     url(r'^$',          portal_views.home_page, name='portal'),
     url(r'^admin/',     admin.site.urls),
-    url(r'^accounts/',  include('accounts.urls')),
+    url(r'^accounts/',  include('accounts.urls', namespace='accounts')),
+    url(r'^associations/',
+        include('associations.urls', namespace='associations')
+        ),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
