@@ -66,6 +66,13 @@ class Association(models.Model):
     def __str__(self):
         return self.name
 
+    def is_member(self, user):
+        if user.is_authenticated():
+            a = Account.objects.get(user=user)
+            if (self.membership_set.filter(account=a).count() > 0):
+                return True
+        return False
+
 
 class Membership(models.Model):
     """

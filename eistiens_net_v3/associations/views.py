@@ -7,20 +7,19 @@ from django.shortcuts import (
 
 from .models import Association
 from .forms import AssociationForm
-from accounts.models import Account
 
 
 def list(request):
-    assos = Association.objects.all()
-    if request.user.is_authenticated:
-        account = Account.objects.get(user=request.user)
-    else:
-        account = None
+
+    assos = {
+        (asso, asso.is_member(request.user))
+        for asso in Association.objects.all()
+    }
 
     return render(
         request,
         'associations/list.html',
-        {'assos': assos, 'account': account}
+        {'assos': assos}
     )
 
 
