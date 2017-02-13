@@ -16,14 +16,14 @@ class HomePageTest(CustomUnitTestCase):
         response = self.client.get('/')
         self.assertContains(
             response,
-            "href='%s'>Déconnexion" % reverse('logout')
+            'href="%s">Déconnexion' % reverse('accounts:logout')
         )
 
     def test_home_page_displays_login_link_when_not_logged_in(self):
         response = self.client.get('/')
         self.assertContains(
             response,
-            "href='%s'>Se connecter" % reverse('login')
+            'href="%s">Se connecter' % reverse('accounts:login')
         )
 
     def test_home_page_displays_username_when_logged_in(self):
