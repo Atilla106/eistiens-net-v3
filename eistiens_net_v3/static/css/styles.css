@@ -34,8 +34,67 @@ header, main, footer {
     background-color: #526c77;
 }
 
+/* ASSOCIATIONS
+************************************************************/
+
+#banner {
+    height: 18vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas:
+        ".    .    ."
+        ". logo-wr ."
+        ".     .   .";
+    background-size: cover;
+    background-position-y: center;
+}
+
+#banner > .logo-wrapper{
+    max-height: 100%;
+    margin: auto;
+    grid-area: logo-wr;
+}
+
+#banner > .logo-wrapper > img {
+    display: flex;
+    max-height: 12vh;
+}
+
+#name-asso{
+    text-align: center;
+}
+
+#info-column, #desc-column, #event-column {
+    padding: 0 5% 0 5%;
+}
+
+#info-asso-grid {
+    display: grid;
+    text-align: center;
+    grid-template-columns : 1fr 2fr;
+    grid-template-rows : 1fr 1fr;
+    grid-template-areas:
+        "infoColumn  descColumn "
+        "eventColumn eventColumn";
+}
+
+#event-column {
+    grid-column-end: -1;
+    grid-column-start: 1;
+}
+
 @media only screen and (max-width : 992px) {
     header, main, footer {
         padding-left: 0;
+    }
+
+    #info-asso-grid{
+        grid-template-columns: 1fr;
+        grid-row-gap: 20px;
+        grid-template-areas:
+            "infoColumn"
+            "descColumn"
+            "eventColumn";
     }
 }
