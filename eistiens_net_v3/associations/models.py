@@ -34,15 +34,13 @@ class Association(models.Model):
     logo = models.ImageField(
         "Logo de l'association",
         upload_to="associations/logo",
-        null=True,
-        blank=True,
+        default="associations/logo/default.png"
     )
 
     banner = models.ImageField(
         "Bannière de l'association",
         upload_to="associations/banner",
-        null=True,
-        blank=True,
+        default="associations/banner/default.png"
     )
 
     subscription_cost = models.IntegerField(
