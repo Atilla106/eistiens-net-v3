@@ -1,0 +1,152 @@
+/* ASSOCIATIONS
+************************************************************/
+
+#banner {
+    height: 18vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-areas:
+        ".    .    ."
+        ". logo-wr ."
+        ".    .    .";
+    background-size: cover;
+    background-position-y: center;
+}
+
+#banner > .logo-wrapper{
+    max-height: 100%;
+    margin: auto;
+    grid-area: logo-wr;
+}
+
+#banner > .logo-wrapper > img {
+    display: flex;
+    max-height: 12vh;
+}
+
+#name-asso{
+    text-align: center;
+}
+
+#info-column, #desc-column, #event-column {
+    padding: 0 5% 0 5%;
+}
+
+#info-asso-grid {
+    display: grid;
+    text-align: center;
+    grid-template-columns : 1fr 2fr;
+    grid-template-areas:
+        "infoColumn  descColumn "
+        "eventColumn eventColumn";
+}
+
+#event-column {
+    grid-column-end: -1;
+    grid-column-start: 1;
+}
+
+#info-column {
+    border-right-style: solid;
+    border-right-right: black;
+    border-width: thin;
+}
+
+.sn-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    padding: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: .2s ease-out;
+}
+
+#social-links {
+    margin: 10px;
+}
+
+.sn-link > svg {
+    color: white;
+    margin: auto;
+    height: 100%;
+    width: 100% !important;
+ }
+
+.sn-link:hover {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+    background-color: initial;
+}
+
+.fb {
+    border-color: #3B5998;
+    background-color: #3B5998;
+}
+
+.fb:hover > svg {
+    color: #3B5998;
+}
+
+.tw {
+    border-color: #33CCFF;
+    background-color: #33CCFF;
+}
+
+.tw:hover > svg {
+    color: #33CCFF;
+}
+
+.yt {
+    border-color: #CD201F;
+    background-color: #CD201F;
+}
+
+.yt:hover > svg {
+    color: #CD201F;
+}
+
+.we {
+    border-color: black;
+    background-color: black;
+}
+
+.we:hover > svg {
+    color: black;
+}
+
+.ma {
+    border-color: #DD5347;
+    background-color: #DD5347;
+}
+
+.ma:hover > svg {
+    color: #DD5347;
+}
+
+.ot {
+    border-color: #777777;
+    background-color: #777777;
+}
+
+.ot:hover > svg {
+    color: #777777;
+}
+
+@media only screen and (max-width : 992px) {
+    #info-asso-grid{
+        grid-template-columns: 1fr;
+        grid-row-gap: 20px;
+        grid-template-areas:
+            "infoColumn"
+            "descColumn"
+            "eventColumn";
+    }
+
+    #info-column {
+        border-style: None;
+    }
+}

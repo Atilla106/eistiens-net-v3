@@ -9,8 +9,12 @@ from .models import Association
 from .forms import AssociationForm
 
 
-def list(request):
+def orderKey(links):
+    L = ['FB', 'TW', 'YT', 'WE', 'MA', 'OT']
+    return (L.index(links.type_link))
 
+
+def list(request):
     assos = {
         (asso, asso.is_member(request.user))
         for asso in Association.objects.all()
@@ -25,7 +29,12 @@ def list(request):
 
 def details(request, id):
     asso = get_object_or_404(Association, pk=id)
-    return render(request, 'associations/details.html', {'asso': asso})
+    links = sorted(asso.sociallink_set.all(), key=orderKey)
+    return render(
+        request,
+        'associations/details.html',
+        {'asso': asso, 'links': links}
+    )
 
 
 def edit(request, id):

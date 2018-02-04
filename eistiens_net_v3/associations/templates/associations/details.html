@@ -1,49 +1,85 @@
 {% extends 'common/base.html' %}
 
+{% load static from staticfiles %}
+
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/associations.css" %}"/>
+{% endblock %}
+
 {% block title %}Associations {{ super }}{% endblock %}
 
 {% block content %}
-	<div id="banner" style="background-image: url('{{ asso.banner.url }}');">
-		<div class="logo-wrapper" >
-			<img class="logo responsive-img" src="{{ asso.logo.url }}"/>
-		</div>
-	</div>
-	<div class="container">
-		<h3 id="name-asso">{{ asso.name }}</h3>
+    <div id="banner" style="background-image: url('{{ asso.banner.url }}');">
+        <div class="logo-wrapper" >
+            <img class="logo responsive-img" src="{{ asso.logo.url }}"/>
+        </div>
+    </div>
+    <div class="container">
+        <h3 id="name-asso">{{ asso.name }}</h3>
+        <hr style="width:80%; margin-bottom: 20px"/>
+        <div id="info-asso-grid">
+            <div id="info-column">
+                <div id="info-title">
+                    <h5>Informations pratique</h5>
+                </div>
+                <div id="info-description">
+                    <p>Local : {{ asso.room }}</p>
 
-		<hr style="width:80%; margin-bottom: 20px"/>
-
-		<div id="info-asso-grid">
-			<div id="info-column">
-				<div id="info-title">
-					<h5>Informations pratique</h5>
-				</div>
-				<div id="info-description">
-					<p>Local : {{ asso.room }}</p>
-
-					{% if asso.subscription_cost > 0 %}
-						<p>Cotisation : {{ asso.subscription_cost }}€</p>
-					{% else %}
-						<p>Inscription gratuite</p>
-					{% endif %}
-				</div>
-			</div>
-			<div id="desc-column">
-				<div id="desc-title">
-					<h5>Description</h5>
-				</div>
-				<div id="desc-description">
-					<p>{{ asso.description }}</p>
-				</div>
-			</div>
-			<div id="event-column">
-				<div id="event-title">
-					<h5>Évènements</h5>
-				</div>
-				<div id="event-description">
-					<p>Ceci est l'endroit où une liste d'événements très intéressants auxquels il faut participer</p>
-				</div>
-			</div>
-		</div>
-	</div>
+                    {% if asso.subscription_cost > 0 %}
+                        <p>Cotisation : {{ asso.subscription_cost }}€</p>
+                    {% else %}
+                        <p>Inscription gratuite</p>
+                    {% endif %}
+                    {% if links %}
+                        <div id="social-links">
+                            {% for link in links %}
+                                {% if link.type_link == "FB" %}
+                                    <a class="sn-link fb" href={{ link.url }} target=_blank>
+                                        <i class="fab fa-facebook-f fa-2x"></i>
+                                    </a>
+                                {% elif link.type_link == "TW" %}
+                                    <a class="sn-link tw" href={{ link.url }} target=_blank>
+                                        <i class="fab fa-twitter fa-2x"></i>
+                                    </a>
+                                {% elif "YT" == link.type_link %}
+                                    <a class="sn-link yt" href={{ link.url}} target=_blank>
+                                        <i class="fab fa-youtube fa-2x"></i>
+                                    </a>
+                                {% elif "WE" == link.type_link %}
+                                    <a class="sn-link we" href={{ link.url }} target=_blank>
+                                        <i class="fas fa-code fa-2x"></i>
+                                    </a>
+                                {% elif "MA" == link.type_link %}
+                                    <a class="sn-link ma" href={{ link.url }} target=_blank>
+                                        <i class="fas fa-at fa-2x"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="sn-link ot" href={{ link.url }} target=_blank>
+                                        <i class="fas fa-link fa-2x"></i>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <input class="btn blue darken-2 center" value="join" type="submit"/>
+                </div>
+            </div>
+            <div id="desc-column">
+                <div id="desc-title">
+                    <h5>Description</h5>
+                </div>
+                <div id="desc-description">
+                    <p>{{ asso.description }}</p>
+                </div>
+            </div>
+            <div id="event-column">
+                <div id="event-title">
+                    <h5>Évènements</h5>
+                </div>
+                <div id="event-description">
+                    <p>Ceci est l'endroit où une liste d'événements très intéressants auxquels il faut participer va apparaître</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
