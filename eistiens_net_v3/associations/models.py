@@ -67,8 +67,8 @@ class Association(models.Model):
     def is_member(self, user):
         if user.is_authenticated():
             a = Account.objects.get(user=user)
-            if (self.membership_set.filter(account=a).count() > 0):
-                return True
+            s = SchoolYear.objects.last()
+            return self.membership_set.filter(account=a, year=s).exists()
         return False
 
 
