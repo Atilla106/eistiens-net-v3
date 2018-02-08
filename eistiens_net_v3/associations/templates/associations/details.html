@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="{% static "css/associations.css" %}"/>
 {% endblock %}
 
-{% block title %}Associations {{ super }}{% endblock %}
+{% block title %}{{ asso.name  }} {{ super }}{% endblock %}
 
 {% block content %}
     <div id="banner" style="background-image: url('{{ asso.banner.url }}');">
