@@ -43,8 +43,10 @@ class Association(models.Model):
         default="associations/banner/default.png"
     )
 
-    subscription_cost = models.IntegerField(
+    subscription_cost = models.DecimalField(
         "Coût de la cotisation",
+        max_digits=5,
+        decimal_places=2,
         default=0,
     )
 
