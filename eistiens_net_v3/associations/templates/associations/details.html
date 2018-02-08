@@ -61,7 +61,14 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                    <input class="btn blue darken-2 center" value="join" type="submit"/>
+                    {% if not is_member %}
+                        <form method="POST" action="{% url 'associations:join' id=asso.pk  %}">
+                            {% csrf_token %}
+                            <input class="btn blue darken-2 center" value="join" type="submit"/>
+                        </form>
+                    {% else %}
+                        <a class="btn disabled">Vous êtes déja membre ;)</a>
+                    {% endif %}
                 </div>
             </div>
             <div id="desc-column">
